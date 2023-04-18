@@ -13,30 +13,29 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
-const props = defineProps(['coach']);
+const props = defineProps(['client']);
 const form = useForm({
-    id: props.coach.id,
-    name: props.coach.name,
-    email: props.coach.email,
-    password: props.coach.password,
-    photo: props.coach.photo,
-    experience: props.coach.experience,
-    story: props.coach.story,
-    country: props.coach.country,
-    phone: props.coach.phone,
-    specialization: props.coach.specialization,
+    id: props.client.id,
+    name: props.client.name,
+    email: props.client.email,
+    password: props.client.password,
+    photo: props.client.photo,
+    gender: props.client.gender,
+    height: props.client.height,
+    weight: props.client.weight,
+    goal: props.client.goal,
+    birthday: props.client.birthday,
     _method: 'put',
 });
-console.log(form.photo);
 const editing_name = ref(false);
 const editing_email = ref(false);
 const editing_password = ref(false);
 const editing_photo = ref(false);
-const editing_experience = ref(false);
-const editing_story = ref(false);
-const editing_country = ref(false);
-const editing_phone = ref(false);
-const editing_specialization = ref(false);
+const editing_gender = ref(false);
+const editing_height = ref(false);
+const editing_weight = ref(false);
+const editing_goal = ref(false);
+const editing_birthday = ref(false);
 
 function showImage() {
             return "/storage/";
@@ -45,8 +44,8 @@ function showImage() {
 </script>
 <template >
     <div class="px-8 py-4 ">
-        <h3 class="text-lg font-medium leading-6 text-gray-900 ">Coach Information</h3>
-        <p class="max-w-2xl mt-1 text-sm text-gray-500">Personal coach information details.</p>
+        <h3 class="text-lg font-medium leading-6 text-gray-900 ">client Information</h3>
+        <p class="max-w-2xl mt-1 text-sm text-gray-500">Personal client information details.</p>
     </div>
     <div class="px-8 mt-5 border-t border-gray-200">
         <dl class="divide-y divide-gray-200">
@@ -55,7 +54,7 @@ function showImage() {
                 <dt class="text-sm font-medium text-gray-500">Full name</dt>
                 <dd class="flex justify-between mt-1 text-gray-900 text-tweensm sm:mt-0 sm:col-span-2">
                     <form v-if="editing_name"
-                        @submit.prevent="form.put(route('coaches.update', form.id), { onSuccess: () => editing_name = false })">
+                        @submit.prevent="form.put(route('clients.update', form.id), { onSuccess: () => editing_name = false })">
                         <input type="text" class="flex-grow" v-model="form.name">
                         <InputError :message="form.errors.name" class="mt-2" />
                         <div class="space-x-2">
@@ -79,7 +78,7 @@ function showImage() {
                 <dt class="text-sm font-medium text-gray-500">Email</dt>
                 <dd class="flex justify-between mt-1 text-gray-900 text-tweensm sm:mt-0 sm:col-span-2">
                     <form v-if="editing_email"
-                        @submit.prevent="form.put(route('coaches.update', form.id), { onSuccess: () => editing_email = false })">
+                        @submit.prevent="form.put(route('clients.update', form.id), { onSuccess: () => editing_email = false })">
                         <input type="email" class="flex-grow" v-model="form.email">
                         <InputError :message="form.errors.email" class="mt-2" />
                         <div class="space-x-2">
@@ -103,7 +102,7 @@ function showImage() {
                 <dt class="text-sm font-medium text-gray-500">Password</dt>
                 <dd class="flex justify-between mt-1 text-gray-900 text-tweensm sm:mt-0 sm:col-span-2">
                     <form v-if="editing_password"
-                        @submit.prevent="form.put(route('coaches.update', form.id), { onSuccess: () => editing_password = false })">
+                        @submit.prevent="form.put(route('clients.update', form.id), { onSuccess: () => editing_password = false })">
                         <input type="password" class="flex-grow" v-model="form.password">
                         <InputError :message="form.errors.password" class="mt-2" />
                         <div class="space-x-2">
@@ -131,7 +130,7 @@ function showImage() {
                 <dt class="text-sm font-medium text-gray-500">Photo</dt>
                 <dd class="flex justify-between mt-1 text-gray-900 text-tweensm sm:mt-0 sm:col-span-2">
                     <form v-if="editing_photo"
-                        @submit.prevent="form.post(route('coaches.update', form.id), { onSuccess: () => editing_photo = false })">
+                        @submit.prevent="form.post(route('clients.update', form.id), { onSuccess: () => editing_photo = false })">
                         <input type="file" 
                         @input="form.photo = $event.target.files[0]" name="photo"
                         class="flex-grow">
@@ -143,7 +142,7 @@ function showImage() {
                     </form>
 
                     <img v-else
-                    :src="showImage() + props.coach.photo"
+                    :src="showImage() + props.client.photo"
                     class="w-10" alt="">
 
                     <span class="flex-shrink-0 ml-4">
@@ -154,71 +153,71 @@ function showImage() {
                 </dd>
             </div>
             <!-- ---------------- -->
-            <!-- ---------------- EXPERIENCE-->
+            <!-- ---------------- GENDER-->
             <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt class="text-sm font-medium text-gray-500">Experience</dt>
+                <dt class="text-sm font-medium text-gray-500">gender</dt>
                 <dd class="flex justify-between mt-1 text-gray-900 text-tweensm sm:mt-0 sm:col-span-2">
-                    <form v-if="editing_experience"
-                        @submit.prevent="form.put(route('coaches.update', form.id), { onSuccess: () => editing_experience = false })">
-                        <input type="text" class="flex-grow" v-model="form.experience">
-                        <InputError :message="form.errors.experience" class="mt-2" />
+                    <form v-if="editing_gender"
+                        @submit.prevent="form.put(route('clients.update', form.id), { onSuccess: () => editing_gender = false })">
+                        <input type="text" class="flex-grow" v-model="form.gender">
+                        <InputError :message="form.errors.gender" class="mt-2" />
                         <div class="space-x-2">
                             <PrimaryButton class="mt-4">Save</PrimaryButton>
-                            <button class="mt-4" @click="editing_experience = false; form.reset(); form.clearErrors()">Cancel</button>
+                            <button class="mt-4" @click="editing_gender = false; form.reset(); form.clearErrors()">Cancel</button>
                         </div>
                     </form>
-                    <span v-else class="flex-grow">{{ form.experience }}</span>
+                    <span v-else class="flex-grow">{{ form.gender }}</span>
 
 
                     <span class="flex-shrink-0 ml-4">
-                        <button type="button" @click="editing_experience = true"
+                        <button type="button" @click="editing_gender = true"
                             class="font-medium text-indigo-600 bg-white rounded-md hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
                     </span>
                 </dd>
             </div>
             <!-- ---------------- -->
-            <!-- ---------------- STORY-->
+            <!-- ----------------HEIGHT-->
             <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt class="text-sm font-medium text-gray-500">Story</dt>
+                <dt class="text-sm font-medium text-gray-500">Height</dt>
                 <dd class="flex justify-between mt-1 text-gray-900 text-tweensm sm:mt-0 sm:col-span-2">
-                    <form v-if="editing_story"
-                        @submit.prevent="form.put(route('coaches.update', form.id), { onSuccess: () => editing_story = false}, { preserveScroll: true})">
-                        <input type="text" class="flex-grow" v-model="form.story">
-                        <InputError :message="form.errors.story" class="mt-2" />
+                    <form v-if="editing_height"
+                        @submit.prevent="form.put(route('clients.update', form.id), { onSuccess: () => editing_height = false}, { preserveScroll: true})">
+                        <input type="number" class="flex-grow" v-model="form.height">
+                        <InputError :message="form.errors.height" class="mt-2" />
                         <div class="space-x-2">
                             <PrimaryButton class="mt-4">Save</PrimaryButton>
-                            <button class="mt-4" @click="editing_story = false; form.reset(); form.clearErrors()">Cancel</button>
+                            <button class="mt-4" @click="editing_height = false; form.reset(); form.clearErrors()">Cancel</button>
                         </div>
                     </form>
-                    <span v-else class="flex-grow">{{ form.story }}</span>
+                    <span v-else class="flex-grow">{{ form.height }}</span>
 
 
                     <span class="flex-shrink-0 ml-4">
-                        <button type="button" @click="editing_story= true"
+                        <button type="button" @click="editing_height= true"
                             class="font-medium text-indigo-600 bg-white rounded-md hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
                     </span>
 
                 </dd>
             </div>
             <!-- ---------------- -->
-            <!-- ----------------COUNTRY-->
+            <!-- ----------------WEIGHT-->
             <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt class="text-sm font-medium text-gray-500">Country</dt>
+                <dt class="text-sm font-medium text-gray-500">weight</dt>
                 <dd class="flex justify-between mt-1 text-gray-900 text-tweensm sm:mt-0 sm:col-span-2">
-                    <form v-if="editing_country"
-                        @submit.prevent="form.put(route('coaches.update', form.id), { onSuccess: () => editing_country = false })">
-                        <input type="text" class="flex-grow" v-model="form.country">
-                        <InputError :message="form.errors.country" class="mt-2" />
+                    <form v-if="editing_weight"
+                        @submit.prevent="form.put(route('clients.update', form.id), { onSuccess: () => editing_weight = false })">
+                        <input type="number" class="flex-grow" v-model="form.weight">
+                        <InputError :message="form.errors.weight" class="mt-2" />
                         <div class="space-x-2">
                             <PrimaryButton class="mt-4">Save</PrimaryButton>
-                            <button class="mt-4" @click="editing_country = false; form.reset(); form.clearErrors()">Cancel</button>
+                            <button class="mt-4" @click="editing_weight = false; form.reset(); form.clearErrors()">Cancel</button>
                         </div>
                     </form>
-                    <span v-else class="flex-grow">{{ form.country }}</span>
+                    <span v-else class="flex-grow">{{ form.weight }}</span>
 
 
                     <span class="flex-shrink-0 ml-4">
-                        <button type="button" @click="editing_country = true"
+                        <button type="button" @click="editing_weight = true"
                             class="font-medium text-indigo-600 bg-white rounded-md hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
                     </span>
 
@@ -227,46 +226,46 @@ function showImage() {
             <!-- ---------------- -->
             <!-- ---------------- PHON-->
             <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt class="text-sm font-medium text-gray-500">Phone</dt>
+                <dt class="text-sm font-medium text-gray-500">Goal</dt>
                 <dd class="flex justify-between mt-1 text-gray-900 text-tweensm sm:mt-0 sm:col-span-2">
-                    <form v-if="editing_phone"
-                        @submit.prevent="form.put(route('coaches.update', form.id), { onSuccess: () => editing_phone = false })">
-                        <input type="text" class="flex-grow" v-model="form.phone">
-                        <InputError :message="form.errors.phone" class="mt-2" />
+                    <form v-if="editing_goal"
+                        @submit.prevent="form.put(route('clients.update', form.id), { onSuccess: () => editing_goal = false })">
+                        <input type="text" class="flex-grow" v-model="form.goal">
+                        <InputError :message="form.errors.goal" class="mt-2" />
                         <div class="space-x-2">
                             <PrimaryButton class="mt-4">Save</PrimaryButton>
-                            <button class="mt-4" @click="editing_phone = false; form.reset(); form.clearErrors()">Cancel</button>
+                            <button class="mt-4" @click="editing_goal = false; form.reset(); form.clearErrors()">Cancel</button>
                         </div>
                     </form>
-                    <span v-else class="flex-grow">{{ form.phone }}</span>
+                    <span v-else class="flex-grow">{{ form.goal }}</span>
 
 
                     <span class="flex-shrink-0 ml-4">
-                        <button type="button" @click="editing_phone = true"
+                        <button type="button" @click="editing_goal = true"
                             class="font-medium text-indigo-600 bg-white rounded-md hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
                     </span>
 
                 </dd>
             </div>
             <!-- ---------------- -->
-            <!-- ---------------- specialization-->
+            <!-- ---------------- BIRTHDAY-->
             <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt class="text-sm font-medium text-gray-500">Specialization</dt>
+                <dt class="text-sm font-medium text-gray-500">Birthday</dt>
                 <dd class="flex justify-between mt-1 text-gray-900 text-tweensm sm:mt-0 sm:col-span-2">
-                    <form v-if="editing_specialization"
-                        @submit.prevent="form.put(route('coaches.update', form.id), { onSuccess: () => editing_specialization = false })">
-                        <input type="text" class="flex-grow" v-model="form.specialization">
-                        <InputError :message="form.errors.specialization" class="mt-2" />
+                    <form v-if="editing_birthday"
+                        @submit.prevent="form.put(route('clients.update', form.id), { onSuccess: () => editing_birthday = false })">
+                        <input type="date" class="flex-grow" v-model="form.birthday">
+                        <InputError :message="form.errors.birthday" class="mt-2" />
                         <div class="space-x-2">
                             <PrimaryButton class="mt-4">Save</PrimaryButton>
-                            <button class="mt-4" @click="editing_specialization = false; form.reset(); form.clearErrors()">Cancel</button>
+                            <button class="mt-4" @click="editing_birthday = false; form.reset(); form.clearErrors()">Cancel</button>
                         </div>
                     </form>
-                    <span v-else class="flex-grow">{{ form.specialization }}</span>
+                    <span v-else class="flex-grow">{{ form.birthday }}</span>
 
 
                     <span class="flex-shrink-0 ml-4">
-                        <button type="button" @click="editing_specialization = true"
+                        <button type="button" @click="editing_birthday = true"
                             class="font-medium text-indigo-600 bg-white rounded-md hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
                     </span>
 

@@ -24,12 +24,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('photo');
             $table->string('gender');
             $table->integer('height');
             $table->integer('weight');
             $table->string('goal');
-            $table->date('birthday');
-
+            $table->date('birthday')->default("2001-06-25");
 
             $table->timestamps();
         });

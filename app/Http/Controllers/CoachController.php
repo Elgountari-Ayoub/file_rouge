@@ -21,7 +21,7 @@ class CoachController extends Controller
     {
         $coachId = auth()->user()->id;
         $coach = Coach::where('user_id', $coachId)->first();
-        // dd($coach->photo);   
+        // dd($coach->id);   
         return Inertia::render('Coaches/Index', [
             'coach' => $coach,
         ]);
@@ -36,7 +36,6 @@ class CoachController extends Controller
         if ($user->role == 'coach') {
             $this->index();
             return;
-            // return to_route('coaches.index');
         }
         return Inertia::render('Coaches/Create');
     }
@@ -54,8 +53,6 @@ class CoachController extends Controller
             'story' => 'required|string|max:255',
             'experience' => 'required|string|max:255',
         ]);
-
-
 
         $user = auth()->user();
         $coach = new Coach();
@@ -84,7 +81,8 @@ class CoachController extends Controller
         $user = User::whereIn('id', [$coachId])
             ->update(['role' => 'coach']);
 
-        return to_route('/');
+        // return Inertia::render('Coaches/Index');
+        return to_route('coaches.index');
     }
 
     /**

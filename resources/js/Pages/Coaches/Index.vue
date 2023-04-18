@@ -3,9 +3,10 @@ import Layout from '@/Layouts/Layout.vue'
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { computed } from '@vue/reactivity';
-import CoachFormComp from '@/Components/CoachFormComp.vue';
-import CoachProfile from '@/Components/CoacheComps/CoachProfile.vue';
-import SideBarLayout from '@/Layouts/SideBarLayout.vue';
+import CoachProfile from '@/Components/CoachComps/CoachProfile.vue';
+import SideBarLayout from '@/Components/CoachComps/CoachSideBar.vue.js';
+import CoachFormComp from '@/Components/CoachComps/CoachFormComp.vue';
+import CoachSideBar from '@/Components/CoachComps/CoachSideBar.vue.js';
 
 const props = defineProps(['coach']);
 </script>   
@@ -14,8 +15,8 @@ const props = defineProps(['coach']);
 <template>
     <Head title="Coach Profile" />
     <Layout>
-        <SideBarLayout>
+        <CoachSideBar>
             <CoachProfile :coach="coach" />
-        </SideBarLayout>
+        </CoachSideBar>
     </Layout>
 </template>

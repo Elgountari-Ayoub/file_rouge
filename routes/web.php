@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CoachController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -44,6 +45,9 @@ Route::middleware('auth')->group(function () {
 
     // Coahes
     Route::resource('coaches', CoachController::class);
+
+    // Clienta
+    Route::resource('clients', ClientController::class);
 });
 
 // ----------------------------------------

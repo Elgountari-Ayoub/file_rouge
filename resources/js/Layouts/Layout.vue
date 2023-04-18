@@ -20,33 +20,66 @@ const showingNavigationDropdown = ref(false);
 
 <template>
     <div class="">
-        <div class="min-h-screen relative">
-            <nav class="bg-white border-b border-gray-100 fixed left-0 top-0  w-full ">
+        <div class="relative min-h-screen ">
+            <nav class="fixed top-0 left-0 w-full bg-white border-b border-gray-100 mb-52">
                 <!-- Primary Navigation Menu -->
-                <div class=" px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 ">
+                <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16 ">
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex items-center shrink-0">
-                                <Link :href="route('/')" >
+                                <Link :href="route('/')">
                                 <!-- <ApplicationLogo class="block w-auto text-gray-800 fill-current h-9" /> -->
                                 <!-- You Coach -->
                                 YOU COACH
                                 </Link>
                             </div>
 
-               
                             <!-- Navigation Links -->
-                            <!-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-if="$page.props.auth.user.role === '' "> -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink v-if="$page.props.userRole != 'coach'" :href="route('coacheslist')" :active="route().current('coacheslist')">
-                                    Find a coach 
+                            <!-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink v-if="$page.props.userRole != 'coach'" :href="route('clients.create')"
+                                    :active="route().current('clients.create')">
+                                    Find a coach
                                 </NavLink>
-                                <!-- <NavLink v-if="$page.props.userRole" :href="route('coaches.create')" :active="route().current('coaches.create')"> -->
-                                <NavLink v-if="$page.props.userRole != 'coach'" :href="route('coaches.create')" :active="route().current('coaches.create')">
+                                <NavLink v-if="$page.props.userRole != 'coach'" :href="route('coaches.create')"
+                                    :active="route().current('coaches.create')">
                                     Apply to coach
                                 </NavLink>
-                                <NavLink v-if="$page.props.userRole == 'coach'" :href="route('coaches.index')" :active="route().current('coaches.index')">
+                                <NavLink v-if="$page.props.userRole == 'coach'" :href="route('coaches.index')"
+                                    :active="route().current('coaches.index')">
+                                    Dashboard
+                                </NavLink>
+                                <NavLink v-if="$page.props.userRole == 'client' " :href="route('clients.index')"
+                                    :active="route().current('clients.index')">
+                                    Dashboard
+                                </NavLink>
+                            </div> -->
+
+                            <!-- Guest and User Links -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-if="$page.props.userRole == 'user' || $page.props.userRole == 'guest'">
+                                <NavLink :href="route('clients.create')"
+                                    :active="route().current('clients.create')">
+                                    Find a coach
+                                </NavLink>
+                                <NavLink :href="route('coaches.create')"
+                                    :active="route().current('coaches.create')">
+                                    Apply to coach
+                                </NavLink>
+                            </div>
+
+                            <!-- Cleint Links -->
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-if="$page.props.userRole == 'client'">
+                                <NavLink :href="route('clients.index')"
+                                    :active="route().current('clients.index')">
+                                    Dashboard
+                                </NavLink>
+                            </div>
+
+                            <!-- Coach Links -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-if="$page.props.userRole == 'coach'">
+                                <NavLink :href="route('coaches.index')"
+                                    :active="route().current('coaches.index')">
                                     Dashboard
                                 </NavLink>
                             </div>
@@ -150,16 +183,15 @@ const showingNavigationDropdown = ref(false);
             </nav>
 
             <!-- Page Heading -->
-            <header class="bg-white shadow" v-if="$slots.header">
+            <header class="mt-20 bg-white shadow" v-if="$slots.header">
                 <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <slot name="header" />
                 </div>
             </header>
 
             <!-- Page Content -->
-            <main class="mt-20">
-                <slot />
+            <main >
+                <slot/>
             </main>
         </div>
-    </div>
-</template>
+</div></template>
