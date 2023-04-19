@@ -19,6 +19,7 @@ class Client extends Model
         'height',
         'weight',
         'goal',
+        'birthday'
     ];
 
     public function user(): BelongsTo

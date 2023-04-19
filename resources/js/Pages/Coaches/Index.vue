@@ -4,9 +4,8 @@ import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { computed } from '@vue/reactivity';
 import CoachProfile from '@/Components/CoachComps/CoachProfile.vue';
-import SideBarLayout from '@/Components/CoachComps/CoachSideBar.vue.js';
 import CoachFormComp from '@/Components/CoachComps/CoachFormComp.vue';
-import CoachSideBar from '@/Components/CoachComps/CoachSideBar.vue.js';
+import CoachSideBar from '@/Components/CoachComps/CoachSideBar.vue';
 
 const props = defineProps(['coach']);
 </script>   

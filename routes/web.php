@@ -39,15 +39,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
+    
     // Pages Routing
     // Route::get('/pages/coaches', [PageController::class, 'getCoaches'])->name('pages.coaches');
-
+    
     // Coahes
     Route::resource('coaches', CoachController::class);
-
+    
     // Clienta
-    Route::resource('clients', ClientController::class);
+    Route::resource('clients', ClientController::class)->middleware('client');
+    Route::get('/coachesList', [CoachController::class, 'coachesList'])->name('coaches.coachesList');
 });
 
 // ----------------------------------------

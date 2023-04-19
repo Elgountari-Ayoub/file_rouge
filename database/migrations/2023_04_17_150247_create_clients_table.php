@@ -29,7 +29,7 @@ return new class extends Migration
             $table->integer('height');
             $table->integer('weight');
             $table->string('goal');
-            $table->date('birthday')->default("2001-06-25");
+            $table->date('birthday')->default("2002-06-28");
 
             $table->timestamps();
         });

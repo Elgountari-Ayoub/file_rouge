@@ -22,6 +22,16 @@ class Coach extends Model
         'story',
     ];
 
+    public function scopeFilter($query, array $filters)
+    {
+        if ($filters['search'] ?? false) {
+            $query->where('name', 'like', '%' . request('search') . '%')
+                ->orWhere('specialization', 'like', '%' . request('search') . '%')
+                ->orWhere('experience', 'like', '%' . request('search') . '%');
+        }
+    }
+
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

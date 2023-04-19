@@ -2,7 +2,7 @@
   <div
     class="relative flex items-center justify-center min-h-screen bg-center bg-cover bg-gradient-to-r from-blue-900 to-purple-900 " style="z-index: -1;">
     <div class="max-w-4xl px-4 mx-auto sm:px-6 lg:px-8">
-      <h1 class="mb-4 text-5xl font-bold text-white">Fitness Coaching</h1>
+      <h1 class="mb-4 text-5xl font-bold text-white">Fitness Coaching Platforme</h1>
       <p class="mb-8 text-xl text-gray-300">Get in the best shape of your life with our expert coaching.</p>
       <div class="flex flex-wrap mb-12 -mx-4">
         <div class="w-full px-4 mb-4 sm:w-1/2">

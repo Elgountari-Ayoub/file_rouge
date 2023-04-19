@@ -19,12 +19,28 @@ class CoachController extends Controller
      */
     public function index()
     {
-        $coachId = auth()->user()->id;
-        $coach = Coach::where('user_id', $coachId)->first();
-        // dd($coach->id);   
-        return Inertia::render('Coaches/Index', [
-            'coach' => $coach,
-        ]);
+        try {
+            $coachId = auth()->user()->id;
+            $coach = Coach::where('user_id', $coachId)->first();
+
+            return Inertia::render('Coaches/Index', [
+                'coach' => $coach,
+            ]);
+        } catch (\Throwable $th) {
+            return to_route('/');
+            // throw $th;
+        }
+    }
+
+    public function coachesList(Request $request)
+    {
+        try {
+            return Inertia::render('Coaches/CoachesList', [
+                'coaches' => Coach::latest()->filter(request(['search']))->get(),
+            ]);
+        } catch (\Throwable $th) {
+            return to_route('/');
+        }
     }
 
     /**
@@ -32,12 +48,16 @@ class CoachController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        if ($user->role == 'coach') {
-            $this->index();
-            return;
+        try {
+            $user = Auth::user();
+            if ($user->role == 'coach') {
+                $this->index();
+                return;
+            }
+            return Inertia::render('Coaches/Create');
+        } catch (\Throwable $th) {
+            return to_route('/');
         }
-        return Inertia::render('Coaches/Create');
     }
 
     /**
@@ -45,44 +65,48 @@ class CoachController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'photo' => 'required|image',
-            'country' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
-            'specialization' => 'required|string|max:255',
-            'story' => 'required|string|max:255',
-            'experience' => 'required|string|max:255',
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'photo' => 'required|image',
+                'country' => 'required|string|max:255',
+                'phone' => 'required|string|max:255',
+                'specialization' => 'required|string|max:255',
+                'story' => 'required|string|max:255',
+                'experience' => 'required|string|max:255',
+            ]);
 
-        $user = auth()->user();
-        $coach = new Coach();
+            $user = auth()->user();
+            $coach = new Coach();
 
-        $coach->user_id = $user->id;
-        $coach->name    = $user->name;
-        $coach->email = $user->email;
-        $coach->password = $user->password;
-        $coach->photo = $validatedData['photo'];
-        $coach->country = $validatedData['country'];
-        $coach->phone = $validatedData['phone'];
-        $coach->specialization = $validatedData['specialization'];
-        $coach->experience = $validatedData['experience'];
-        $coach->story = $validatedData['story'];
+            $coach->user_id = $user->id;
+            $coach->name    = $user->name;
+            $coach->email = $user->email;
+            $coach->password = $user->password;
+            $coach->photo = $validatedData['photo'];
+            $coach->country = $validatedData['country'];
+            $coach->phone = $validatedData['phone'];
+            $coach->specialization = $validatedData['specialization'];
+            $coach->experience = $validatedData['experience'];
+            $coach->story = $validatedData['story'];
 
 
-        if ($request->hasFile('photo')) {
-            $photo = $request->file('photo');
-            $photoPath = $photo->store('public/coaches_photos');
-            $coach->photo = str_replace('public/', '', $photoPath);
+            if ($request->hasFile('photo')) {
+                $photo = $request->file('photo');
+                $photoPath = $photo->store('public/coaches_photos');
+                $coach->photo = str_replace('public/', '', $photoPath);
+            }
+
+            $coach->save();
+
+            $coachId = auth()->user()->id;
+            $user = User::whereIn('id', [$coachId])
+                ->update(['role' => 'coach']);
+
+            // return Inertia::render('Coaches/Index');
+            return to_route('coaches.index');
+        } catch (\Throwable $th) {
+            return to_route('/');
         }
-
-        $coach->save();
-
-        $coachId = auth()->user()->id;
-        $user = User::whereIn('id', [$coachId])
-            ->update(['role' => 'coach']);
-
-        // return Inertia::render('Coaches/Index');
-        return to_route('coaches.index');
     }
 
     /**
@@ -90,7 +114,10 @@ class CoachController extends Controller
      */
     public function show(Coach $coach)
     {
-        //
+        return Inertia::render('Coaches/Show', [
+            'coach' => $coach,
+        ]);
+        
     }
 
     /**
@@ -140,7 +167,7 @@ class CoachController extends Controller
                 'coach' => $coach,
             ]);
         } catch (\Throwable $th) {
-            dd($th);
+            return to_route('/');
         }
     }
 

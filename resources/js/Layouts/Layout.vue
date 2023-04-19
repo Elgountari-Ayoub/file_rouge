@@ -20,8 +20,8 @@ const showingNavigationDropdown = ref(false);
 
 <template>
     <div class="">
-        <div class="relative min-h-screen ">
-            <nav class="fixed top-0 left-0 w-full bg-white border-b border-gray-100 mb-52">
+        <div class="relative min-h-screen">
+            <nav class="fixed top-0 left-0 w-full bg-white border-b border-gray-10 mb-52" style="z-index: 1;">
                 <!-- Primary Navigation Menu -->
                 <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16 ">
@@ -74,6 +74,10 @@ const showingNavigationDropdown = ref(false);
                                     :active="route().current('clients.index')">
                                     Dashboard
                                 </NavLink>
+                                <NavLink :href="route('coaches.coachesList')"
+                                    :active="route().current('coaches.coachesList')">
+                                    Find a coach
+                                </NavLink>
                             </div>
 
                             <!-- Coach Links -->
@@ -118,7 +122,7 @@ const showingNavigationDropdown = ref(false);
                                     </template>
 
                                     <template #content>
-                                        <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
+                                        <!-- <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink> -->
                                         <DropdownLink :href="route('logout')" method="post" as="button">
                                             Log Out
                                         </DropdownLink>
@@ -173,7 +177,7 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink>
+                            <!-- <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink> -->
                             <ResponsiveNavLink :href="route('logout')" method="post" as="button">
                                 Log Out
                             </ResponsiveNavLink>

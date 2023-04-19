@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Coach;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
@@ -16,6 +17,11 @@ class ClientController extends Controller
      */
     public function index()
     {
+        // return Inertia::render('Clients/CoachesList');
+        $user = Auth::user();
+        if ($user->role != 'client') {
+            return to_route('/');
+        }
         $clientId = auth()->user()->id;
         $client = Client::where('user_id', $clientId)->first();
         // dd($client->id);   
@@ -103,8 +109,6 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        // dd($request);
-        //
         try {
             $data = [
                 'name' => $request->input('name'),
@@ -124,6 +128,7 @@ class ClientController extends Controller
                 $photoPath = $photo->store('public/clientes_photos');
                 $data['photo'] = str_replace('public/', '', $photoPath);
             }
+            // $client->update($data);  
             $client->update($data);
 
             $clientId = auth()->user()->id;
@@ -148,4 +153,14 @@ class ClientController extends Controller
     {
         //
     }
+
+    public function coaches()
+    {
+        // get all the coaches
+        return view('songs.index', [
+            'songs' => Coach::latest()->filter(request(['tag', 'search']))->get()
+        ]);
+    }
+
+    
 }

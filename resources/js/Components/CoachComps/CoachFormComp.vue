@@ -15,8 +15,7 @@
                                     <input required v-model="form.specialization" type="text" id="specialization"
                                         name="specialization" autocomplete="specialization"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                                    <InputError :message="form.errors.specialization" class="mt-2" />
-
+                                    <InputError :message="form.errors.specialization" class="mt-2" />   
                                 </div>
                                 <!-- Country -->
                                 <div class="col-span-6 sm:col-span-1">
@@ -37,7 +36,7 @@
                             <div>
                                 <label for="experience" class="block text-sm font-medium text-gray-700">Experience</label>
                                 <div class="mt-1">
-                                    <textarea required v-model="form.experience" id="experience" name="experience" rows="3"
+                                    <textarea required v-model="form.experience" id="experience"  name="experience" rows="3"
                                         class="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                         placeholder="I was a little boy ..." />
                                 </div>
