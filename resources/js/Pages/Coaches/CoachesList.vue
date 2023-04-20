@@ -5,7 +5,9 @@ import { Head, Link, router, useForm, usePage } from '@inertiajs/vue3';
 import { computed } from '@vue/reactivity';
 import CoachFormComp from '@/Components/CoachComps/CoachFormComp.vue';
 import CoachListComp from '@/Components/CoachComps/CoachListComp.vue';
-import { onMounted } from 'vue'
+import { onMounted } from 'vue';
+import Footer from '@/Components/Footer.vue';
+
 
 const props = defineProps(['coaches']);
 onMounted(() => { 
@@ -74,6 +76,6 @@ function submit() {
             </div>
         </template>
         <CoachListComp :coaches="coaches"/>
-
+        <Footer/>
     </Layout>
 </template>

@@ -19,6 +19,7 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
-        "@heroicons/vue": "^1.0.6"
+        "@heroicons/vue": "^1.0.6",
+        "@vuepic/vue-datepicker": "^4.4.0"
     }
 }

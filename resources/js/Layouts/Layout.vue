@@ -6,6 +6,7 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link, useForm } from '@inertiajs/vue3';
+import Footer from '@/Components/Footer.vue';
 
 import { computed } from 'vue'
 import { usePage } from '@inertiajs/vue3'

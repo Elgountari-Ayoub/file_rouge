@@ -5,6 +5,8 @@ import { Head, Link, usePage } from '@inertiajs/vue3';
 import { computed } from '@vue/reactivity';
 import CoachFormComp from '@/Components/CoachComps/CoachFormComp.vue';
 import CoachCard from '@/Components/CoachComps/CoachCard.vue';
+import Footer from '@/Components/Footer.vue';
+
 
 const props = defineProps(['coach']);
 
@@ -21,6 +23,7 @@ const props = defineProps(['coach']);
             </div>
         </template>
         <CoachCard :coach="coach"/>
+        <Footer/>
         <!-- <CoachFormComp /> -->
         <!-- <div class="bg-gray-100">
             <div class="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">

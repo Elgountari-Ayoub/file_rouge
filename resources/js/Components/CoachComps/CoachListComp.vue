@@ -4,17 +4,12 @@
       <div class="space-y-12">
         <ul role="list" class="space-y-12 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:gap-y-12 lg:space-y-0">
           <li v-for="coach in coaches" :key="coach.name">
+            <Link :href="`/coaches/${coach.id}`">
             <div class="m-auto space-y-4 sm:grid sm:grid-cols-3 sm:gap-6 sm:space-y-0 lg:gap-8">
               <div class="h-0 aspect-w-3 aspect-h-2 sm:aspect-w-3 sm:aspect-h-4">
-                <!-- class="object-cover rounded-lg shadow-lg w-1024 h-1024" -->
-                <img 
-                    :src="showImage() + coach.photo"
-                    class="object-cover rounded-lg shadow-lg"
-                     alt="">
-                     <div class="aspect-w-3 aspect-h-2">
-                <!-- <img  :src="person.imageUrl" alt="" /> -->
-              </div>
-                <!-- <img class="object-cover rounded-lg shadow-lg" :src="coach.imageUrl" alt="" /> -->
+                <img :src="showImage() + coach.photo" class="object-cover rounded-lg shadow-lg" alt="">
+                <div class="aspect-w-3 aspect-h-2">
+                </div>
               </div>
               <div class="sm:col-span-2">
                 <div class="space-y-4">
@@ -28,9 +23,8 @@
                 </div>
               </div>
             </div>
+            </Link>
           </li>
-
-
         </ul>
       </div>
     </div>
@@ -38,7 +32,9 @@
 </template>
   
 <script setup>
+import { Link } from '@inertiajs/vue3'
 const props = defineProps(['coaches']);
+
 
 function showImage() {
   return "/storage/";

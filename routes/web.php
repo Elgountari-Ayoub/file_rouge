@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
     // Clienta
     Route::resource('clients', ClientController::class)->middleware('client');
     Route::get('/coachesList', [CoachController::class, 'coachesList'])->name('coaches.coachesList');
+    Route::get('/calendar', [CoachController::class, 'calendar'])->middleware('coach')->name('coaches.calendar');
 });
 
 // ----------------------------------------

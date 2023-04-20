@@ -6,9 +6,8 @@ import { computed } from '@vue/reactivity';
 import CoachProfile from '@/Components/CoachComps/CoachProfile.vue';
 import CoachFormComp from '@/Components/CoachComps/CoachFormComp.vue';
 import CoachSideBar from '@/Components/CoachComps/CoachSideBar.vue';
-import Footer from '@/Components/Footer.vue';
-
-
+// import CoachCalendarComp from '@/Components/CoachComps/CoachCalendarComp.vue';
+import CoachCalendarComp from '@/Components/CoachComps/CoachCalendarComp.vue';
 const props = defineProps(['coach']);
 </script>   
 
@@ -17,8 +16,8 @@ const props = defineProps(['coach']);
     <Head title="Coach Profile" />
     <Layout>
         <CoachSideBar>
-            <CoachProfile :coach="coach" />
+
+            <CoachCalendarComp />
         </CoachSideBar>
-        <!-- <Footer/> -->
     </Layout>
 </template>

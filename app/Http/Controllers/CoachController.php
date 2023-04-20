@@ -32,6 +32,15 @@ class CoachController extends Controller
         }
     }
 
+    public function calendar()
+    {
+        try {
+            return  Inertia::render('Coaches/Calendar');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
     public function coachesList(Request $request)
     {
         try {

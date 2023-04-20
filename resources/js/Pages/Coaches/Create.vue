@@ -4,6 +4,8 @@ import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { computed } from '@vue/reactivity';
 import CoachFormComp from '@/Components/CoachComps/CoachFormComp.vue';
+import Footer from '@/Components/Footer.vue';
+
 </script>
 
 <template>
@@ -19,13 +21,6 @@ import CoachFormComp from '@/Components/CoachComps/CoachFormComp.vue';
             </div>
         </template>
         <CoachFormComp />
-
-        <div class="py-12">
-            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">You're logged in!</div>
-                </div>
-            </div>
-        </div>
+        <Footer/>
     </Layout>
 </template>

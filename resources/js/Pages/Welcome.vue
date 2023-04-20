@@ -3,6 +3,7 @@ import Layout from '@/Layouts/Layout.vue'
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { computed } from '@vue/reactivity';
 import HeroSection from '@/Components/HeroSection.vue';
+import Footer from '@/Components/Footer.vue';
 
 </script>
 
@@ -10,6 +11,8 @@ import HeroSection from '@/Components/HeroSection.vue';
     <Head title="Welcome" />
     <Layout>
         <HeroSection/>
+        <Footer/>
+
         <!-- <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">Welcom</h2>
         </template>

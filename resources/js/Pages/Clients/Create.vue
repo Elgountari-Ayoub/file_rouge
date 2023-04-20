@@ -3,7 +3,9 @@ import Layout from '@/Layouts/Layout.vue'
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { computed } from '@vue/reactivity';
-import ClientFormComp from '@/Components/ClientComps/ClientFormComp.vue'
+import ClientFormComp from '@/Components/ClientComps/ClientFormComp.vue';
+import Footer from '@/Components/Footer.vue';
+
 
 </script>
 
@@ -20,5 +22,6 @@ import ClientFormComp from '@/Components/ClientComps/ClientFormComp.vue'
             </div>
         </template>
         <ClientFormComp/>
+        <Footer/>
     </Layout>
 </template>
