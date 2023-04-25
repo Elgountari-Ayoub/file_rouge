@@ -8,12 +8,13 @@ import CoachCard from '@/Components/CoachComps/CoachCard.vue';
 import Footer from '@/Components/Footer.vue';
 
 
-const props = defineProps(['coach']);
+const props = defineProps(['coach', 'appointments']);
 
 </script>
 
 <template>
     <Head title="Coaches Create" />
+    
     <Layout>
         <template #header>
             <div class="md:col-span-1">
@@ -22,7 +23,7 @@ const props = defineProps(['coach']);
                 </div>
             </div>
         </template>
-        <CoachCard :coach="coach"/>
+        <CoachCard :coach="coach" :appointments="appointments"/>
         <Footer/>
         <!-- <CoachFormComp /> -->
         <!-- <div class="bg-gray-100">

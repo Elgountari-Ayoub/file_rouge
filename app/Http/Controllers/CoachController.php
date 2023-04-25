@@ -123,9 +123,15 @@ class CoachController extends Controller
      */
     public function show(Coach $coach)
     {
-        return Inertia::render('Coaches/Show', [
-            'coach' => $coach,
-        ]);
+        try {
+            return Inertia::render('Coaches/Show', [
+                'coach' => $coach,
+                'appointments' => $coach->appointments,
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
         
     }
 

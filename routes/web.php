@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -28,6 +29,7 @@ Route::get('/', function () {
 // Pages
 Route::get('/coacheslist', function () {
     return Inertia::render('CoachesList');
+
 })->middleware(['auth', 'verified'])->name('coacheslist');
 
 Route::get('/dashboard', function () {
@@ -46,8 +48,12 @@ Route::middleware('auth')->group(function () {
     // Coahes
     Route::resource('coaches', CoachController::class);
     
-    // Clienta
+    // Clients
     Route::resource('clients', ClientController::class)->middleware('client');
+
+    // Appointment
+    Route::resource('appointments', AppointmentController::class);
+
     Route::get('/coachesList', [CoachController::class, 'coachesList'])->name('coaches.coachesList');
     Route::get('/calendar', [CoachController::class, 'calendar'])->middleware('coach')->name('coaches.calendar');
 });

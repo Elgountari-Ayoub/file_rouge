@@ -20,6 +20,8 @@
     },
     "dependencies": {
         "@heroicons/vue": "^1.0.6",
-        "@vuepic/vue-datepicker": "^4.4.0"
+        "@vuepic/vue-datepicker": "^4.4.0",
+        "moment": "^2.29.4",
+        "vue-sweetalert2": "^5.0.5"
     }
 }
