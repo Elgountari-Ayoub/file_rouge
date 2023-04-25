@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Coach;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Appointment extends Model
 {
@@ -19,5 +21,9 @@ class Appointment extends Model
     public function coach()
     {
         return $this->belongsTo(Coach::class);
+    }
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
     }
 }

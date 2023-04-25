@@ -8,6 +8,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\CoachController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PaypalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,5 +64,16 @@ Route::get('/share', function () {
     return Inertia::render('ShareData', [
     ]);
 });
+
+
+
+// Paypal
+
+Route::get('go-payment', [PapPalController::class, 'goPayment'])->name('payment.go');
+
+Route::get('/payment', [PaypalController::class, 'payment'])->name('payment');
+Route::get('/cancel', [PaypalController::class, 'cancel'])->name('payment.cancel');
+Route::get('/success', [PaypalController::class, 'success'])->name('payment.success');
+
 
 require __DIR__.'/auth.php';

@@ -8,15 +8,20 @@ import CoachFormComp from '@/Components/CoachComps/CoachFormComp.vue';
 import CoachSideBar from '@/Components/CoachComps/CoachSideBar.vue';
 // import CoachCalendarComp from '@/Components/CoachComps/CoachCalendarComp.vue';
 import CoachCalendarComp from '@/Components/CoachComps/CoachCalendarComp.vue';
-const props = defineProps(['appointments']);
+import ClientSideBar from '@/Components/ClientComps/ClientSideBar.vue';
+import ClientAppointmentComp from '@/Components/ClientComps/ClientAppointmentComp.vue'
+const props = defineProps(['appointments', 'userType']);
 </script>   
 
 
 <template>
     <Head title="Coach Profile" />
     <Layout>
-        <CoachSideBar>
-            <CoachCalendarComp :appointments="appointments" />
+        <ClientSideBar v-if="props.userType == 'client'">
+            <ClientAppointmentComp   :appointments="appointments" :userType="userType"/>
+        </ClientSideBar>
+        <CoachSideBar v-else>
+            <CoachCalendarComp :appointments="appointments" :userType="userType"/>
         </CoachSideBar>
     </Layout>
 </template>

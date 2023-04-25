@@ -5,8 +5,8 @@
         <ul role="list" class="space-y-12 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:gap-y-12 lg:space-y-0">
           <li v-for="coach in coaches" :key="coach.name">
             <Link :href="`/coaches/${coach.id}`">
-            <div class="m-auto space-y-4 sm:grid sm:grid-cols-3 sm:gap-6 sm:space-y-0 lg:gap-8">
-              <div class="h-0 aspect-w-3 aspect-h-2 sm:aspect-w-3 sm:aspect-h-4">
+            <div class="space-y-4 sm:grid sm:grid-cols-3 sm:gap-6 sm:space-y-0 lg:gap-8">
+              <div class="aspect-w-3 aspect-h-2 sm:aspect-w-3 sm:aspect-h-4">
                 <img :src="showImage() + coach.photo" class="object-cover rounded-lg shadow-lg" alt="">
                 <div class="aspect-w-3 aspect-h-2">
                 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Coach;
 use App\Models\Appointment;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -14,14 +15,20 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-
+        // dd(auth()->user()->role);
         try {
-            $coachId = auth()->user()->id;
-            $coach = Coach::findOrFail($coachId);
-            $appointments = $coach->appointments;
-            // dd($appointments);
+            if (auth()->user()->role == 'client') {
+                $client_id = auth()->user()->id;
+                $client = Client::where('user_id', $client_id)->first();
+                $appointments = Appointment::where('client_id', $client_id)->get();
+            } else {
+                $coach_id = auth()->user()->id;
+                $coach = Coach::findOrFail($coach_id);
+                $appointments = $coach->appointments;
+            }
             return  Inertia::render('Appointment/Index', [
                 'appointments' => $appointments,
+                'userType' => auth()->user()->role
             ]);
         } catch (\Throwable $th) {
             //throw $th;

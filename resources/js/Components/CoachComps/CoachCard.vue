@@ -22,10 +22,10 @@
                         </div>
                     </div>
                     <ul class="grid grid-cols-2 gap-4 m-8 md:grid-cols-4 place-content-center">
-                        <li v-for="item in props.coach.appointments" :key="item.start_time" class="p-2 text-center" @click="item.client_id ? null :  updateSelectedDate(item.start_time)"  :class="{'bg-red-500' : item.client_id, 'bg-teal-100' : !item.client_id}">
+                        <li v-for="item in props.coach.appointments" :key="item.start_time" class="p-2 text-center rounded cursor-pointer" @click="item.client_id ? null :  updateSelectedDate(item.start_time)"  :class="{'bg-red-500' : item.client_id, 'bg-teal-100' : !item.client_id}">
                             {{ item.start_time }}
                         </li>
-                        <button type="submit" @click.prevent="submit"
+                        <button v-if="props.coach.appointments" type="submit" @click.prevent="submit"
                             class="inline-flex justify-center px-4 py-2 mt-auto text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Reserve</button>
                     </ul>
                 </div>

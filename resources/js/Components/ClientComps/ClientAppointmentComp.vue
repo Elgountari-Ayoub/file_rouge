@@ -1,22 +1,9 @@
 <template>
-    <div class="grid gap-4 xl:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 ">
-        <div class="col-span-1">
-            <VueDatePicker v-model="date" inline auto-apply="true" class="col-span-1 my-4 sm:col-span-2" v />
-            <button type="submit"
-                class="inline-flex justify-center px-4 py-2 mt-auto text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                @click.prevent="submit">Submit</button>
-        </div>
-        <ul class="grid grid-cols-1 col-span-2 gap-4 lg:grid-cols-4 md:grid-cols-1 place-content-start">
-            <li v-for="item in appointments" :key="item.start_time" class="p-2 text-center rounded-lg "
-                @click="item.client_id ? null : updateSelectedDate(item.start_time)"
-                :class="{ 'bg-red-500': item.client_id, 'bg-teal-100': !item.client_id }">
-                {{ item.start_time }}
-            </li>
-        </ul>
-
-    </div>
-
-    <p class="mt-4">{{ formattedDate }}</p>
+            <ul class="grid grid-cols-2 gap-4 md:grid-cols-4 ">
+                <li v-for="item in appointments" :key="item.start_time" class="p-2 text-center rounded-full" @click="item.client_id ? null :  updateSelectedDate(item.start_time)"  :class="{'bg-red-500' : item.client_id, 'bg-teal-100' : !item.client_id}">
+                    {{ item.start_time }}
+                </li>
+            </ul>
 </template>
 
 <script setup>
@@ -61,9 +48,9 @@ function isTimeAvailable(newStart, newEnd, appointments) {
         const start = appointments[i].start_time;
         const end = appointments[i].end_time;
 
-        if ((newStart >= start && newStart < end) ||
-            (newEnd > start && newEnd <= end) ||
-            (newStart <= start && newEnd >= end)) {
+        console.log('22222');
+        console.log(newStart, start, newEnd, end);
+        if ((newStart >= start && newStart < end) || (newEnd > start && newEnd <= end)) {
             err_msg = ['Already Exist!', 'Selected date mustn\'t be between added appointment'];
             return false;
         }
